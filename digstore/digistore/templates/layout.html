@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DIGISTORE</title>
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css" />
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="../static/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="../static/css/slick-theme.css" />
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="../static/css/nouislider.min.css" />
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="../static/css/font-awesome.min.css">
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="../static/css/style.css" />
+
+</head>
+
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- top Header -->
+		<div id="top-header">
+			<div class="container">
+				<div class="pull-left">
+					<span>Welcome to DIGISTORE!</span>
+				</div>
+				<div class="pull-right">
+					<ul class="header-top-links">
+						<li><a href="{{ url_for('buy') }}">Продавница</a></li>
+						<li><a href="{{ url_for('faq') }}">Често поставувани прашања</a></li>
+						<li class="dropdown default-dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">MK <i
+									class="fa fa-caret-down"></i></a>
+							<ul class="custom-menu">
+								<li><a href="#">Macedonian(MK)</a></li>
+								<li><a href="#">English (ENG)</a></li>
+							</ul>
+						</li>
+						<li><a href="#">EUR (€)</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /top Header -->
+
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<div class="pull-left">
+					<!-- Logo -->
+					<div id="logoCustom" class="header-logo">
+						<a class="logo" href="{{ url_for('home') }}">
+							DIGISTORE
+						</a>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Search -->
+					<div class="header-search">
+						<form>
+							<input class="input search-input" type="text" placeholder="Enter your keyword">
+
+							<button class="search-btn"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+					<!-- /Search -->
+				</div>
+				<div class="pull-right">
+					<ul class="header-btns">
+						<!-- Account -->
+						<li class="header-account dropdown default-dropdown">
+							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-user-o"></i>
+								</div>
+								<strong class="text-uppercase">Мој Профил<i class="fa fa-caret-down"></i></strong>
+							</div>
+							{% if current_user.is_authenticated %}
+								<a href="{{ url_for('logout') }}" class="text-uppercase">Одјави се</a>
+							{% else %}
+								<a href="{{ url_for('login') }}" class="text-uppercase">Логирај се</a> / <a href="{{ url_for('register') }}" class="text-uppercase">
+									Приклучи се!</a>
+							{% endif %}
+							<ul class="custom-menu">
+								<li><a href="{{ url_for('account') }}"><i class="fa fa-user-o"></i> Мој Профил</a></li>
+								<li><a href="{{ url_for('buy') }}"><i class="fa fa-check"></i> Купи</a></li>
+								{% if current_user.is_authenticated %}
+									<li><a href="{{ url_for('logout') }}">Одјави се</a></li>
+								{% else %}
+									<li><a href="{{ url_for('login') }}"><i class="fa fa-unlock-alt"></i> Логирај се</a></li>
+									<li><a href="{{ url_for('register') }}"><i class="fa fa-user-plus"></i> Направи нов профил</a></li>
+								{% endif %}
+							</ul>
+						</li>
+						<!-- /Account -->
+
+						<!-- Cart -->
+						<li class="header-cart dropdown default-dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="qty">3</span>
+								</div>
+								<strong class="text-uppercase">Кошница:</strong>
+								<br>
+								<span>35.20€</span>
+							</a>
+							<div class="custom-menu">
+								<div id="shopping-cart">
+									<div class="shopping-cart-list">
+										<div class="product product-widget">
+											<div class="product-thumb">
+												<img src="../static/img/thumb-product01.jpg" alt="">
+											</div>
+											<div class="product-body">
+												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
+												<h2 class="product-name"><a href="#">Име на продуктот</a></h2>
+											</div>
+											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
+										</div>
+										<div class="product product-widget">
+											<div class="product-thumb">
+												<img src="../static/img/thumb-product01.jpg" alt="">
+											</div>
+											<div class="product-body">
+												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
+												<h2 class="product-name"><a href="#">Име на продуктот</a></h2>
+											</div>
+											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
+										</div>
+									</div>
+									<div class="shopping-cart-btns">
+										<button class="main-btn">Кошница</button>
+										<button class="primary-btn">Наплата <i
+												class="fa fa-arrow-circle-right"></i></button>
+									</div>
+								</div>
+							</div>
+						</li>
+						<!-- /Cart -->
+
+						<!-- Mobile nav toggle-->
+						<li class="nav-toggle">
+							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+						</li>
+						<!-- / Mobile nav toggle -->
+					</ul>
+				</div>
+			</div>
+			<!-- header -->
+		</div>
+		<!-- container -->
+	</header>
+	<!-- /HEADER -->
+
+	<!-- NAVIGATION -->
+	<div id="navigation" style="margin-left: -580px;">
+		<!-- container -->
+		<div class="container">
+			<div id="responsive-nav">
+				<!-- category nav -->
+				<div class="category-nav">
+					<span class="category-header">Категории <i class="fa fa-list"></i></span>
+					<ul class="category-list">
+						<li class="dropdown side-dropdown">
+							<div class="custom-menu">
+								<div class="row">
+									<div class="col-md-4">
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Категории</h3>
+											</li>
+											<li><a href="{{ url_for('software') }}">Софтвер</a></li>
+											<li><a href="{{ url_for('webapps') }}">Веб апликации</a></li>
+											<li><a href="{{ url_for('games') }}">Игри</a></li>
+											<li><a href="{{ url_for('movies') }}">Филмови</a></li>
+											<li><a href="{{ url_for('ebooks') }}">еКниги</a></li>
+											<li><a href="{{ url_for('videos') }}">Видеа</a></li>
+											<li><a href="{{ url_for('audio_music') }}">Аудио и Музика</a></li>
+											<li><a href="{{ url_for('photography') }}">Професионални фотографии</a></li>
+											<li><a href="{{ url_for('digiralart') }}">Графички и дигитална уметност</a></li>
+											<li><a href="{{ url_for('documents') }}">Документи и водичи</a></li>
+											<li><a href="{{ url_for('courses') }}">Курсеви</a></li>
+											<li><a href="{{ url_for('proff') }}">Професионални сервиси</a></li>
+											<li><a href="{{ url_for('tickets') }}">Виртуелни карти</a></li>
+										</ul>
+										<hr class="hidden-md hidden-lg">
+									</div>
+									<div class="col-md-4">
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Категории</h3>
+											</li>
+											<li><a href="{{ url_for('software') }}">Софтвер</a></li>
+											<li><a href="{{ url_for('webapps') }}">Веб апликации</a></li>
+											<li><a href="{{ url_for('games') }}">Игри</a></li>
+											<li><a href="{{ url_for('movies') }}">Филмови</a></li>
+											<li><a href="{{ url_for('ebooks') }}">еКниги</a></li>
+											<li><a href="{{ url_for('videos') }}">Видеа</a></li>
+											<li><a href="{{ url_for('audio_music') }}">Аудио и Музика</a></li>
+											<li><a href="{{ url_for('photography') }}">Професионални фотографии</a></li>
+											<li><a href="{{ url_for('digiralart') }}">Графички и дигитална уметност</a></li>
+											<li><a href="{{ url_for('documents') }}">Документи и водичи</a></li>
+											<li><a href="{{ url_for('courses') }}">Курсеви</a></li>
+											<li><a href="{{ url_for('proff') }}">Професионални сервиси</a></li>
+											<li><a href="{{ url_for('tickets') }}">Виртуелни карти</a></li>
+										</ul>
+										<hr class="hidden-md hidden-lg">
+									</div>
+									<div class="col-md-4">
+										<ul class="list-links">
+											<li>
+												<h3 class="list-links-title">Категории</h3>
+											</li>
+											<li><a href="{{ url_for('software') }}">Софтвер</a></li>
+											<li><a href="{{ url_for('webapps') }}">Веб апликации</a></li>
+											<li><a href="{{ url_for('games') }}">Игри</a></li>
+											<li><a href="{{ url_for('movies') }}">Филмови</a></li>
+											<li><a href="{{ url_for('ebooks') }}">еКниги</a></li>
+											<li><a href="{{ url_for('videos') }}">Видеа</a></li>
+											<li><a href="{{ url_for('audio_music') }}">Аудио и Музика</a></li>
+											<li><a href="{{ url_for('photography') }}">Професионални фотографии</a></li>
+											<li><a href="{{ url_for('digiralart') }}">Графички и дигитална уметност</a></li>
+											<li><a href="{{ url_for('documents') }}">Документи и водичи</a></li>
+											<li><a href="{{ url_for('courses') }}">Курсеви</a></li>
+											<li><a href="{{ url_for('proff') }}">Професионални сервиси</a></li>
+											<li><a href="{{ url_for('tickets') }}">Виртуелни карти</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="row hidden-sm hidden-xs">
+									<div class="col-md-12">
+										<hr>
+										<a class="banner banner-1" href="#">
+											<img src="../static/img/banner05.jpg" alt="">
+											<div class="banner-caption text-center">
+												<h2 class="white-color">НОВИ КОЛЕКЦИИ</h2>
+												<h3 class="white-color font-weak">НАЈНОВИ ПОНУДИ</h3>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li><a href="{{ url_for('software') }}">Софтвер</a></li>
+						<li><a href="{{ url_for('webapps') }}">Веб апликации</a></li>
+						<li><a href="{{ url_for('games') }}">Игри</a></li>
+						<li><a href="{{ url_for('movies') }}">Филмови</a></li>
+						<li><a href="{{ url_for('ebooks') }}">еКниги</a></li>
+						<li><a href="{{ url_for('videos') }}">Видеа</a></li>
+						<li><a href="{{ url_for('audio_music') }}">Аудио и Музика</a></li>
+						<li><a href="{{ url_for('photography') }}">Професионални фотографии</a></li>
+						<li><a href="{{ url_for('digiralart') }}">Графички и дигитална уметност</a></li>
+						<li><a href="{{ url_for('documents') }}">Документи и водичи</a></li>
+						<li><a href="{{ url_for('courses') }}">Курсеви</a></li>
+						<li><a href="{{ url_for('proff') }}">Професионални сервиси</a></li>
+						<li><a href="{{ url_for('tickets') }}">Виртуелни карти</a></li>
+					</ul>
+				</div>
+				<!-- /category nav -->
+
+				<!-- menu nav -->
+				<div class="menu-nav">
+					<span class="menu-header">Мени <i class="fa fa-bars"></i></span>
+					<ul class="menu-list">
+						<li><a href="{{ url_for('home') }}">Дома</a></li>
+						<li><a href="{{ url_for('buy') }}">Купувај</a></li>
+						<li><a href="{{ url_for('sell') }}">Продавај</a></li>
+					</ul>
+				</div>
+				<!-- menu nav -->
+			</div>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /NAVIGATION -->
+	<div style="min-height: 700px;">{% block content %}{% endblock %}</div>
+	
+
+
+	<!-- FOOTER -->
+	
+	<footer id="footer" class="section section-grey">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<!-- footer logo -->
+						<div id="logoCustom" class="footer-logo">
+							<a class="logo" href="{{ url_for('home') }}">
+								DIGISTORE
+							</a>
+						</div>
+						<!-- /footer logo -->
+
+						<!-- footer social -->
+						<ul class="footer-social">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+						<!-- /footer social -->
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Мој профил</h3>
+						<ul class="list-links">
+							<li><a href="{{ url_for('account') }}">Мој профил</a></li>
+							<li><a href="#">Наплата</a></li>
+							<li><a href="{{ url_for('login') }}">Логирај се</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<div class="clearfix visible-sm visible-xs"></div>
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Услуга за клиенти</h3>
+						<ul class="list-links">
+							<li><a href="#">За нас</a></li>
+							<li><a href="#">Полиса наплата, и повраток</a></li>
+							<li><a href="{{ url_for('faq') }}">Најчесто поставувани прашања</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer subscribe -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Остани конектиран</h3>
+						<p>Добивај ги најновите новости!</p>
+						<form>
+							<div class="form-group">
+								<input class="input" placeholder="Enter Email Address">
+							</div>
+							<button class="primary-btn">Претплати се</button>
+						</form>
+					</div>
+				</div>
+				<!-- /footer subscribe -->
+			</div>
+			<!-- /row -->
+			<hr>
+		</div>
+		<!-- /container -->
+	</footer>
+	<!-- /FOOTER -->
+
+	<!-- jQuery Plugins -->
+	<script src="../static/js/jquery.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+	<script src="../static/js/slick.min.js"></script>
+	<script src="../static/js/nouislider.min.js"></script>
+	<script src="../static/js/jquery.zoom.min.js"></script>
+	<script src="../static/js/main.js"></script>
+
+</body>
+
+</html>

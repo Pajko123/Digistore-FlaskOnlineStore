@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<div style="margin-top: 1%; margin-left:20%;" class="justify-content-md-center">
+    <article class="media content-section">
+        <img class="rounded-circle article-img"
+            src="{{ url_for('static', filename='postimg/' + post.image_post) }}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                {% if post.author == current_user %}
+                
+                {% endif %}
+            </div>
+            <h2 hidden class="article-title">{{ post.id }}</h2>
+            <h2 class="article-title">{{ post.title }}</h2>
+            <div style="width: 25%;"><p class="article-content">{{ post.content }}</p></div>
+            <h3 class="article-title">{{ post.price }}€</h3>
+            <h5 class="article-title">E-mail: {{ post.author.email }}</h5>
+            <h5 class="article-title">Број: {{ post.contact }}</h5>
+        </div>
+        <div class="product-btns">
+            <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>
+                <a href="{{ url_for('checkout', post_id=post.id) }}">Купи сега!</a></button>            
+        </div>
+        
+        <br>
+    
+        
+    </article>
+
+    
+</div>
+{% endblock content %}
