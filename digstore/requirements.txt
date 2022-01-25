@@ -76,7 +76,7 @@ python-dateutil==2.8.1
 python-jsonrpc-server==0.2.0
 python-language-server==0.28.1
 pytz==2019.2
-pywin32==227
+pywin32==301
 pywinpty==0.5.7
 pyzmq==18.1.1
 rake-nltk==1.0.4
